@@ -26,16 +26,7 @@
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/dogName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Dog's name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogImage"
-        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/dogId"
@@ -45,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:text="Dog's ID"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dogName"
+        app:layout_constraintTop_toBottomOf="@id/dogImage"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -55,6 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Breed: "
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dogId"
         tools:ignore="MissingConstraints" />
@@ -65,6 +57,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Weight"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/breedName"
         tools:ignore="MissingConstraints" />
@@ -75,21 +68,52 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Height"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weight"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/dogAge"
+        android:id="@+id/lifeSpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="Age"
-        android:textColor="#43A047"
+        android:text="Life Span"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/height"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/bredFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Bred for"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifeSpan"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/breedGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Breed Group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bredFor"
+        tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/temperament"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Temperament"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breedGroup"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
