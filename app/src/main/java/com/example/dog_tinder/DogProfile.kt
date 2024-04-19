@@ -32,45 +32,50 @@ class DogProfile : AppCompatActivity() {
                 Log.d("API", "Request successful! Response: $response")
 
 
-                val nameTextView = findViewById<TextView>(R.id.dogName)
+
                 val idTextView = findViewById<TextView>(R.id.dogId)
-                val ageTextView = findViewById<TextView>(R.id.dogAge)
                 val breedNameTextView = findViewById<TextView>(R.id.breedName)
                 val weightTextView = findViewById<TextView>(R.id.weight)
                 val heightTextView = findViewById<TextView>(R.id.height)
                 val imageView = findViewById<ImageView>(R.id.dogImage)
-
+                val lifeSpanTextView = findViewById<TextView>(R.id.lifeSpan)
+                val bredForTextView = findViewById<TextView>(R.id.bredFor)
+                val breedGroupTextView = findViewById<TextView>(R.id.breedGroup)
+                val temperamentTextView = findViewById<TextView>(R.id.temperament)
 
                 val dogData = response.getJSONObject(0) // Assuming you want the first dog's data
 
-                // Retrieve dog data from the JSON object
+
                 val dogId = dogData.optString("id")
-                val dogAge = dogData.optString("age")
                 val dogImageUrl = dogData.optString("url")
 
 
                 val breedData = dogData.optJSONArray("breeds")?.getJSONObject(0)
 
                 if (breedData != null) {
-                    // Retrieve breed attributes from breedData JSON object
+                  
                     val breedName = breedData.optString("name")
+
                     val weight = breedData.optJSONObject("weight")?.optString("imperial")
                     val height = breedData.optJSONObject("height")?.optString("imperial")
-
-                    // Set breed attributes to TextViews
+                    val lifeSpn= breedData.optString("life_span")
+                    val bredFor = breedData.optString("bred_for")
+                    val breedGroup = breedData.optString("breed_group")
+                    val temperament = breedData.optString("temperament")
+                    
                     breedNameTextView.text = "Breed: $breedName"
                     weightTextView.text = "Weight: $weight"
                     heightTextView.text = "Height: $height"
+                    lifeSpanTextView.text= "Life Span : $lifeSpn"
+                    bredForTextView.text = "Bred for $bredFor"
+                    breedGroupTextView.text = "Breed group: $breedGroup"
+                    temperamentTextView.text= "Temperament: $temperament"
 
                 }
-                val petsData = dogData.optJSONArray("pets")?.getJSONObject(0)
 
-                if (petsData != null) {
-                    val dogName= breedData?.optString("name")
-                    nameTextView.text = "Name: $dogName"}// Set dog data to TextViews
 
                 idTextView.text = "ID: $dogId"
-                ageTextView.text = "Age: $dogAge"
+
 
 
 
