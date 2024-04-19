@@ -1,7 +1,9 @@
 package com.example.dog_tinder
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,6 +30,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.welcome_screen)
+        val logInButton: Button = findViewById(R.id.loginButton)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -43,6 +48,14 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // Set an onClickListener on the button
+        logInButton.setOnClickListener {
+            // Create an intent to navigate to MainActivity2
+            //val intent = Intent(this, DogProfile::class.java)
+            // Start MainActivity2 using the intent
+            startActivity(intent)
+        }
     }
 
 
