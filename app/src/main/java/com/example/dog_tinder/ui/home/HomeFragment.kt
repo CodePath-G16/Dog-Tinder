@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.dog_tinder.databinding.FragmentHomeBinding
@@ -15,10 +14,10 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 import org.json.JSONException
-import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
+    //USe FragmentHomeBinding for view binding
     private var _binding: FragmentHomeBinding? = null
     private lateinit var dogInfoAdapter: DogInfoAdapter
     private val dogInfoList = mutableListOf<DogInfo>()
@@ -35,6 +34,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        //Inflate the layout and initialize the binding
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -44,9 +44,12 @@ class HomeFragment : Fragment() {
         dogInfoAdapter = DogInfoAdapter(dogInfoList)
         recyclerView.adapter = dogInfoAdapter
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Observe the dogInfoList LiveData from HomeViewModel
+        homeViewModel.dogInfoList.observe(viewLifecycleOwner) { dogInfoList ->
+            // Update the adapter with the new dogInfoList
+            this.dogInfoList.clear()
+            this.dogInfoList.addAll(dogInfoList)
+            dogInfoAdapter.notifyDataSetChanged()
         }
 
         getDogInfo()
@@ -59,12 +62,18 @@ class HomeFragment : Fragment() {
         val id: String,
         val url: String,
         val width: Int,
-        val height: Int
-    )
+        val height: Int,
+        val breedName: String,
+        val bredFor: String,
+        val breedGroup: String
+
+    ) {
+
+    }
 
     data class Breed(
-        val weight: Weight,
-        val height: Height,
+        val weight: String,
+        val height: String,
         val id: Int,
         val name: String,
         val bred_for: String,
@@ -89,12 +98,22 @@ class HomeFragment : Fragment() {
 
     private fun getDogInfo() {
         val client = AsyncHttpClient()
-     //   val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
+        val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey"
 
-        client.get(url, object : JsonHttpResponseHandler() { // FIX WHY this onSuccess can not override
-             fun onSuccess(statusCode: Int, headers: Headers, response: JSONObject) {
-                // Handle successful response
+        client.get(url, object : JsonHttpResponseHandler() {
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                response: String?,
+                throwable: Throwable?
+            ) {
+                Log.e("Dog Error", "Failed to fetch dog info: ${throwable?.message}")
+            }
+            /* override fun onSuccess(statusCode: Int, header: Headers?, response: JSON?) {
+
+                 // Handle successful response
+
                 try {
                     // Parse the response JSON
                     val dogInfo = DogInfo(
@@ -132,16 +151,48 @@ class HomeFragment : Fragment() {
                     Log.e("Dog", "Error parsing JSON", e)
                 }
             }
+            */
 
-            override fun onFailure(p0: Int, p1: Headers?, p2: String?, p3: Throwable?) {
-                Log.e("Dog Error", "Failed to fetch dog info: ")
-            }
+            //was not able to figure out how to make the current code work so I tried to follow the format from my previous project
+            //if able to make it work, then will take this out
 
-            override fun onSuccess(p0: Int, p1: Headers?, p2: JSON?) {
-                Log.d("DOG API CALLED", p2.toString())
+            override fun onSuccess(statusCode: Int, headers: Headers?, response: JSON?) {
+                try {
+                    val jsonArray = response?.jsonArray
+                    jsonArray?.let {
+                        for (i in 0 until it.length()) {
+                            val dog = it.getJSONObject(i)
+                            val breedsArray = dog.getJSONArray("breeds")
+                            val breedObject = breedsArray.getJSONObject(0)
+                            val breedName = breedObject.getString("name")
+                            val bredFor = breedObject.getString("bred_for")
+                            val breedGroup = breedObject.getString("breed_group")
+                            val url = dog.getString("url")
+                            val width = dog.getInt("width")
+                            val height = dog.getInt("height")
+
+                            val dogInfo = DogInfo(
+                                breeds = emptyList(),
+                                id = dog.getString("id"),
+                                url = url,
+                                width = width,
+                                height = height,
+                                breedName = breedName,
+                                bredFor = bredFor,
+                                breedGroup = breedGroup
+                            )
+                            dogInfoList.add(dogInfo)
+                        }
+                        dogInfoAdapter.notifyDataSetChanged()
+                    }
+                } catch (e: JSONException) {
+                    Log.e("DogTinder", "Error parsing JSON: ${e.message}")
+                }
             }
         })
     }
+
+
 
 
     override fun onDestroyView() {

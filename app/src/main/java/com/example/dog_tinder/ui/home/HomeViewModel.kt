@@ -6,8 +6,12 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _dogInfoList = MutableLiveData<List<HomeFragment.DogInfo>>()
+    val dogInfoList: LiveData<List<HomeFragment.DogInfo>> = _dogInfoList
+
+    fun setDogInfoList(dogInfoList: List<HomeFragment.DogInfo>) {
+        _dogInfoList.value = dogInfoList
     }
-    val text: LiveData<String> = _text
 }
+
+

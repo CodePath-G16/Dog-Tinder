@@ -3,38 +3,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
+
+    <!-- Add other TextViews or views to display more dog information -->
+
+    <ImageButton
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="48dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/like_button"
+        app:layout_constraintEnd_toEndOf="@+id/breedGroupTextView"
+        app:layout_constraintTop_toBottomOf="@+id/breedGroupTextView" />
 
     <TextView
         android:id="@+id/breedNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="16dp"
         android:text="Breed Name"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Add other TextViews or views to display more dog information -->
+        app:layout_constraintBottom_toTopOf="@+id/bredForTextView"
+        app:layout_constraintEnd_toEndOf="@+id/bredForTextView" />
 
     <TextView
         android:id="@+id/bredForTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginBottom="16dp"
         android:text="Bred for charactertic:"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/breedGroupTextView"
+        app:layout_constraintStart_toStartOf="@+id/breedGroupTextView" />
 
     <TextView
         android:id="@+id/breedGroupTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="294dp"
         android:text="Breed GROUP FIGURE OUT DIFFERENCE"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/dogImg"
+        android:layout_width="164dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginBottom="133dp"
+        app:layout_constraintBottom_toBottomOf="@+id/breedGroupTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/Dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="57dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dislikebutton"
+        app:layout_constraintEnd_toStartOf="@+id/like"
+        app:layout_constraintStart_toStartOf="@+id/breedGroupTextView"
+        app:layout_constraintTop_toBottomOf="@+id/breedGroupTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
