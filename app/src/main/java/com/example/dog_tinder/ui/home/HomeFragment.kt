@@ -14,6 +14,8 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 import org.json.JSONException
+import org.json.JSONArray
+import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
@@ -163,27 +165,19 @@ class HomeFragment : Fragment() {
                         for (i in 0 until it.length()) {
                             val dog = it.getJSONObject(i)
                             val breedsArray = dog.getJSONArray("breeds")
-                            val breedObject = breedsArray.getJSONObject(0)
-                            val breedName = breedObject.getString("name")
-                            val bredFor = breedObject.getString("bred_for")
-                            val breedGroup = breedObject.getString("breed_group")
-                            val url = dog.getString("url")
-                            val width = dog.getInt("width")
-                            val height = dog.getInt("height")
+                            if (breedsArray.length() > 0) {
+                                val breedObject = breedsArray.getJSONObject(0)
+                                val breedName = breedObject.getString("name")
+                                val bredFor = breedObject.optString("bred_for", "Unknown")
+                                val breedGroup = breedObject.optString("breed_group", "Unknown")
+                                val height = breedObject.getJSONObject("height").getString("metric")
+                                val width = breedObject.getJSONObject("weight").getString("metric")
+                                val url = dog.getString("url")
 
-                            val dogInfo = DogInfo(
-                                breeds = emptyList(),
-                                id = dog.getString("id"),
-                                url = url,
-                                width = width,
-                                height = height,
-                                breedName = breedName,
-                                bredFor = bredFor,
-                                breedGroup = breedGroup
-                            )
-                            dogInfoList.add(dogInfo)
+                                // Use the extracted information as needed
+                                Log.d("Dog Info", "Breed Name: $breedName, Bred For: $bredFor, Breed Group: $breedGroup, Height: $height, Width: $width, Image URL: $url")
+                            }
                         }
-                        dogInfoAdapter.notifyDataSetChanged()
                     }
                 } catch (e: JSONException) {
                     Log.e("DogTinder", "Error parsing JSON: ${e.message}")
@@ -191,9 +185,6 @@ class HomeFragment : Fragment() {
             }
         })
     }
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

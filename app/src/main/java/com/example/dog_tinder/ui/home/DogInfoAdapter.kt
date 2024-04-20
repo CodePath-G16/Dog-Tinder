@@ -1,5 +1,6 @@
 package com.example.dog_tinder.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,8 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentDogInfo = dogInfoList[position]
+        //trying to debug why it is not showing the image
+        Log.d("DogTinder", "Binding item at position $position, Dog Info: $currentDogInfo")
         holder.bind(currentDogInfo)
     }
 
@@ -56,9 +59,9 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
                 .centerCrop()
                 .into(dogImageView)
 
-            breedNameTextView.text = currentDogInfo.breeds.firstOrNull()?.name ?: "Unknown"
-            bredForTextView.text = currentDogInfo.breeds.firstOrNull()?.bred_for ?: "Unknown"
-            breedGroupTextView.text = currentDogInfo.breeds.firstOrNull()?.breed_group ?: "Unknown"
+            breedNameTextView.text = currentDogInfo.breedName
+            bredForTextView.text = currentDogInfo.bredFor
+            breedGroupTextView.text = currentDogInfo.breedGroup
         }
 
     }
