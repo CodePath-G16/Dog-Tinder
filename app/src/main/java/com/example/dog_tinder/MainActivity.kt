@@ -23,24 +23,30 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
- //   private lateinit var dogInfoAdapter: DogInfoAdapter
-  //  private val dogInfoList = mutableListOf<DogInfo>()
-
+    //  private lateinit var dogInfoAdapter: DogInfoAdapter
+    //  private val dogInfoList = mutableListOf<DogInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        navigateToWelcomeScreen()
 
+    }
+
+    private fun navigateToWelcomeScreen() {
         setContentView(R.layout.welcome_screen)
         val logInButton: Button = findViewById(R.id.loginButton)
 
+        logInButton.setOnClickListener {
+            navigateToHomeScreen()
+        }
+    }
+
+    private fun navigateToHomeScreen() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
@@ -48,14 +54,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // Set an onClickListener on the button
-        logInButton.setOnClickListener {
-            // Create an intent to navigate to MainActivity2
-            //val intent = Intent(this, DogProfile::class.java)
-            // Start MainActivity2 using the intent
-            startActivity(intent)
-        }
     }
 
 
