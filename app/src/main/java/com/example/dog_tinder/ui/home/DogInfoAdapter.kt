@@ -15,25 +15,10 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.fragment_home, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_dog_info, parent, false)
         return ViewHolder(itemView)
     }
 
-    /*override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentDogInfo = dogInfoList[position]
-        holder.breedNameTextView.text = currentDogInfo.breeds.firstOrNull()?.name ?: "Unknown"
-        holder.bredForTextView.text = currentDogInfo.breeds.firstOrNull()?.bred_for ?: "Unknown"
-        holder.breedGroupTextView.text = currentDogInfo.breeds.firstOrNull()?.breed_group ?: "Unknown"
-        val imageURL = getImageURLForReferenceId(breed?.reference_image_id)
-
-    // Use Glide to load the image into the ImageView
-        Glide.with(holder.itemView.context)
-            .load(imageURL)
-            .into(holder.dogImageView)
-
-        // Bind more data as needed
-        }
-     */
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentDogInfo = dogInfoList[position]
@@ -48,10 +33,10 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val breedNameTextView: TextView = itemView.findViewById(R.id.breedNameTextView)
-        val bredForTextView: TextView = itemView.findViewById(R.id.bredForTextView)
-        val breedGroupTextView: TextView = itemView.findViewById(R.id.breedGroupTextView)
-        val dogImageView: ImageView = itemView.findViewById(R.id.dogImg)
+        private val breedNameTextView: TextView = itemView.findViewById(R.id.breedNameTextView)
+        private val bredForTextView: TextView = itemView.findViewById(R.id.bredForTextView)
+        private val breedGroupTextView: TextView = itemView.findViewById(R.id.breedGroupTextView)
+        private val dogImageView: ImageView = itemView.findViewById(R.id.dogImg)
 
         fun bind(currentDogInfo: HomeFragment.DogInfo) {
             Glide.with(itemView)

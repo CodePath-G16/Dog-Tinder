@@ -7,24 +7,28 @@
     tools:context=".ui.home.HomeFragment">
 
     <!-- recycler view -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="800dp"
+        android:layout_marginBottom="45dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/searchAge"
-        app:layout_constraintStart_toStartOf="@+id/searchAge"
-        app:layout_constraintTop_toBottomOf="@+id/searchBreed"
-        tools:listitem="@layout/item_dog_info" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchAge"
+        tools:listitem="@layout/item_dog_info"
+        tools:visibility="visible" />
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchBreed"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_height="48dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="5dp"
         android:hint="Breed"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
@@ -32,12 +36,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchAge"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
         android:hint="Age"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"

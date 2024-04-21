@@ -14,8 +14,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 import org.json.JSONException
-import org.json.JSONArray
-import org.json.JSONObject
+
 
 class HomeFragment : Fragment() {
 
@@ -45,6 +44,8 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         dogInfoAdapter = DogInfoAdapter(dogInfoList)
         recyclerView.adapter = dogInfoAdapter
+
+
 
         // Observe the dogInfoList LiveData from HomeViewModel
         homeViewModel.dogInfoList.observe(viewLifecycleOwner) { dogInfoList ->
@@ -174,15 +175,28 @@ class HomeFragment : Fragment() {
                                 val width = breedObject.getJSONObject("weight").getString("metric")
                                 val url = dog.getString("url")
 
-                                // Use the extracted information as needed
-                                Log.d("Dog Info", "Breed Name: $breedName, Bred For: $bredFor, Breed Group: $breedGroup, Height: $height, Width: $width, Image URL: $url")
+                                // Create a DogInfo object and add it to the list
+                                val dogInfo = DogInfo(
+                                    breeds = emptyList(),
+                                    id = dog.getString("id"),
+                                    url = url,
+                                    width = width.toIntOrNull() ?: 0,
+                                    height = height.toIntOrNull() ?: 0,
+                                    breedName = breedName,
+                                    bredFor = bredFor,
+                                    breedGroup = breedGroup
+                                )
+                                dogInfoList.add(dogInfo)
                             }
                         }
+                        // Notify the adapter of the data change
+                        dogInfoAdapter.notifyDataSetChanged()
                     }
                 } catch (e: JSONException) {
                     Log.e("DogTinder", "Error parsing JSON: ${e.message}")
                 }
             }
+
         })
     }
 
