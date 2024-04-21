@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
     private fun getDogInfo() {
         val client = AsyncHttpClient()
         val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25"
 
         client.get(url, object : JsonHttpResponseHandler() {
             override fun onFailure(
