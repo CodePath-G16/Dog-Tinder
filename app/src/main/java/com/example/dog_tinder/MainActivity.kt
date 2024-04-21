@@ -1,5 +1,6 @@
 package com.example.dog_tinder
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.example.dog_tinder.databinding.ActivityMainBinding
 import com.example.dog_tinder.ui.home.DogInfoAdapter
+import com.example.dog_tinder.ui.notifications.DogProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.Headers
 import org.json.JSONException
@@ -43,6 +45,14 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+     /*  // Call DogProfile activity ONLY FOR TESTING
+        val intent = Intent(this, DogProfile::class.java)
+        startActivity(intent)
+
+      */
+
+
     }
 
 
