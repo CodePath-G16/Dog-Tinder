@@ -32,14 +32,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToWelcomeScreen() {
-        setContentView(R.layout.welcome_screen)
+
+        startActivity(Intent(this, DogProfile::class.java))
+        finish()
+        /*
+        setContentView(R.layout.dog_profile)
 
         val logInButton: Button = findViewById(R.id.loginButton)
 
         logInButton.setOnClickListener {
             navigateToHomeScreen()
         }
-
+*/
     }
 
     private fun navigateToHomeScreen() {

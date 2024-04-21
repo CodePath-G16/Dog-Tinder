@@ -14,7 +14,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class DogProfile : AppCompatActivity() {
-    private val id = "dhXSUo4aC"
+    private val id = "k0WvkHMmP"
     private val apiUrl = "https://api.thedogapi.com/v1/images/$id?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +23,17 @@ class DogProfile : AppCompatActivity() {
 
         val client = AsyncHttpClient()
         client.get(apiUrl, object : JsonHttpResponseHandler() {
-            override fun onFailure(p0: Int, p1: Headers?, p2: String?, p3: Throwable?) {
-                Log.d("doggoAPI", "Failed $p2")
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Headers?,
+                    errorResponse: String,
+                    throwable: Throwable?
+            ) {
+                Log.d("Error", errorResponse)
             }
 
             override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
-
                 Log.d("doggoAPI", "Request successful! Response: $json")
 
                 val idTextView = findViewById<TextView>(R.id.dogId)
@@ -38,47 +43,47 @@ class DogProfile : AppCompatActivity() {
                 val imageView = findViewById<ImageView>(R.id.dogImage)
                 val bredForTextView = findViewById<TextView>(R.id.dogBredfor)
                 val temperamentTextView = findViewById<TextView>(R.id.dogTemperment)
+                val lifeSpnTextView = findViewById<TextView>(R.id.dogLifeSpan)
 
+                val dogId = json.jsonObject.getString("id")
+                idTextView.text = dogId
 
-                /*
-                val dogId = json.getString("id")
-                val dogImageUrl = json.getString("url")
-                val weight = json.getString("weight")
-                val height = json.getString("height")
-                val breedData = json.getJSONArray("breeds")
+                val dogImageUrl = json.jsonObject.getString("url")
 
-                //val breedName = breedData.getString("name")
-                //val bredFor = breedData.optString("bred_for")
-                //val temperament = breedData.optString("temperament")
+                val breedData = json.jsonObject.getString("breeds")
+                val breedDataArray = JSONArray(breedData)
+                if (breedDataArray.length() > 0) {
+                    val firstBreedObject = breedDataArray.getJSONObject(0)
+                    val breedName = firstBreedObject.getString("name")
+                    val temperament = firstBreedObject.getString("temperament")
+                    val bredFor = firstBreedObject.getString("bred_for")
+                    val lifeSpn = firstBreedObject.getString("life_span")
+                    val heightObject = firstBreedObject.getJSONObject("height")
+                    val weightObject = firstBreedObject.getJSONObject("weight")
 
-                for (i in 0 until breedData.length()) {
-                    val breedObject = breedData.getJSONObject(i)
-                    val breedName = breedObject.getString("name")
+                    val heightImperial = heightObject.getString("imperial")
+                    val heightMetric = heightObject.getString("metric")
 
-                idTextView.text = "ID: $dogId"
-                breedTextView.text = "Breed: $breedName"
-                weightTextView.text = "Weight: $weight"
-                heightTextView.text = "Height: $height"
+                    val weightImperial = weightObject.getString("imperial")
+                    val weightMetric = weightObject.getString("metric")
 
-                //bredForTextView.text = "Bred for $bredFor"
-                //temperamentTextView.text= "Temperament: $temperament"
+                    breedTextView.text = breedName
+                    temperamentTextView.text = temperament
+                    bredForTextView.text = bredFor
+                    lifeSpnTextView.text = lifeSpn
+                    heightTextView.text = "Height: $heightImperial (Imperial), $heightMetric (Metric)"
+                    weightTextView.text = "Weight: $weightImperial (Imperial), $weightMetric (Metric)"
+                } else {
+                    Log.d("karma", "No breed data found")
+                }
 
                 // Load the dog image using Glide
                 Glide.with(this@DogProfile)
                     .load(dogImageUrl)
                     .into(imageView)
-            }
-*/
-            fun onFailure(
-                statusCode: Int,
-                headers: Headers?,
-                errorResponse: String,
-                throwable: Throwable?
-            ) {
-                Log.d("Error", errorResponse)
-            }
 
-            }
-        })
+        }
+    })
     }
 }
+
