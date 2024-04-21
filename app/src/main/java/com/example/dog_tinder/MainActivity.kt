@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-     /*  // Call DogProfile activity ONLY FOR TESTING
+       // Call DogProfile activity ONLY FOR TESTING
         val intent = Intent(this, DogProfile::class.java)
         startActivity(intent)
 
-      */
+
 
 
     }
