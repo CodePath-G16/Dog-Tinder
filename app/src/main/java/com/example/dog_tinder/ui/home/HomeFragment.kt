@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
         }
 
         getDogInfo()
-
         return root
     }
 
@@ -83,9 +82,6 @@ class HomeFragment : Fragment() {
         val imperial: String,
         val metric: String
     )
-
-
-
 
     private fun getDogInfo() {
         val client = AsyncHttpClient()

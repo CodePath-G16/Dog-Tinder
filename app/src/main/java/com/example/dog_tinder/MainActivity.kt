@@ -33,11 +33,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToWelcomeScreen() {
         setContentView(R.layout.welcome_screen)
+
         val logInButton: Button = findViewById(R.id.loginButton)
 
         logInButton.setOnClickListener {
             navigateToHomeScreen()
         }
+
     }
 
     private fun navigateToHomeScreen() {

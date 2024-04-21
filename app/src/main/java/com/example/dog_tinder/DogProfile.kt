@@ -6,96 +6,78 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.JsonHttpResponseHandler
-import cz.msebera.android.httpclient.Header
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import okhttp3.Headers
+import okhttp3.internal.http2.Header
 import org.json.JSONArray
-
+import org.json.JSONObject
 
 class DogProfile : AppCompatActivity() {
-
-    private val apiUrl = "https://api.thedogapi.com/v1/images/search?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
+    private val id = "dhXSUo4aC"
+    private val apiUrl = "https://api.thedogapi.com/v1/images/$id?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dog_profile)
 
-
         val client = AsyncHttpClient()
         client.get(apiUrl, object : JsonHttpResponseHandler() {
-            override fun onSuccess(
-                statusCode: Int,
-                headers: Array<Header>,
-                response: JSONArray
-            ) {
+            override fun onFailure(p0: Int, p1: Headers?, p2: String?, p3: Throwable?) {
+                Log.d("doggoAPI", "Failed $p2")
+            }
 
-                Log.d("API", "Request successful! Response: $response")
+            override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
 
-
+                Log.d("doggoAPI", "Request successful! Response: $json")
 
                 val idTextView = findViewById<TextView>(R.id.dogId)
-                val breedNameTextView = findViewById<TextView>(R.id.breedName)
-                val weightTextView = findViewById<TextView>(R.id.weight)
-                val heightTextView = findViewById<TextView>(R.id.height)
+                val breedTextView = findViewById<TextView>(R.id.dogBreed)
+                val weightTextView = findViewById<TextView>(R.id.dogWeight)
+                val heightTextView = findViewById<TextView>(R.id.dogHeight)
                 val imageView = findViewById<ImageView>(R.id.dogImage)
-                val lifeSpanTextView = findViewById<TextView>(R.id.lifeSpan)
-                val bredForTextView = findViewById<TextView>(R.id.bredFor)
-                val breedGroupTextView = findViewById<TextView>(R.id.breedGroup)
-                val temperamentTextView = findViewById<TextView>(R.id.temperament)
-
-                val dogData = response.getJSONObject(0) // Assuming you want the first dog's data
+                val bredForTextView = findViewById<TextView>(R.id.dogBredfor)
+                val temperamentTextView = findViewById<TextView>(R.id.dogTemperment)
 
 
-                val dogId = dogData.optString("id")
-                val dogImageUrl = dogData.optString("url")
+                /*
+                val dogId = json.getString("id")
+                val dogImageUrl = json.getString("url")
+                val weight = json.getString("weight")
+                val height = json.getString("height")
+                val breedData = json.getJSONArray("breeds")
 
+                //val breedName = breedData.getString("name")
+                //val bredFor = breedData.optString("bred_for")
+                //val temperament = breedData.optString("temperament")
 
-                val breedData = dogData.optJSONArray("breeds")?.getJSONObject(0)
-
-                if (breedData != null) {
-                  
-                    val breedName = breedData.optString("name")
-
-                    val weight = breedData.optJSONObject("weight")?.optString("imperial")
-                    val height = breedData.optJSONObject("height")?.optString("imperial")
-                    val lifeSpn= breedData.optString("life_span")
-                    val bredFor = breedData.optString("bred_for")
-                    val breedGroup = breedData.optString("breed_group")
-                    val temperament = breedData.optString("temperament")
-                    
-                    breedNameTextView.text = "Breed: $breedName"
-                    weightTextView.text = "Weight: $weight"
-                    heightTextView.text = "Height: $height"
-                    lifeSpanTextView.text= "Life Span : $lifeSpn"
-                    bredForTextView.text = "Bred for $bredFor"
-                    breedGroupTextView.text = "Breed group: $breedGroup"
-                    temperamentTextView.text= "Temperament: $temperament"
-
-                }
-
+                for (i in 0 until breedData.length()) {
+                    val breedObject = breedData.getJSONObject(i)
+                    val breedName = breedObject.getString("name")
 
                 idTextView.text = "ID: $dogId"
+                breedTextView.text = "Breed: $breedName"
+                weightTextView.text = "Weight: $weight"
+                heightTextView.text = "Height: $height"
 
-
-
+                //bredForTextView.text = "Bred for $bredFor"
+                //temperamentTextView.text= "Temperament: $temperament"
 
                 // Load the dog image using Glide
                 Glide.with(this@DogProfile)
                     .load(dogImageUrl)
                     .into(imageView)
             }
-
-            override fun onFailure(
+*/
+            fun onFailure(
                 statusCode: Int,
-                headers: Array<Header>?,
-                throwable: Throwable,
-                errorResponse: JSONArray?
+                headers: Headers?,
+                errorResponse: String,
+                throwable: Throwable?
             ) {
-                // Log the error
-                Log.e("API", "Request failed with status code $statusCode")
-                if (errorResponse != null) {
-                    Log.e("API", "Error response: $errorResponse")
-                }
+                Log.d("Error", errorResponse)
+            }
+
             }
         })
     }

@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:text="Profile"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintBottom_toTopOf="@+id/doggoid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,57 +21,57 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/doggoid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/dogName"
+        android:text="ID"
+        app:layout_constraintBottom_toTopOf="@+id/dogId"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/breed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/dogDescription"
+        android:text="Breed"
+        app:layout_constraintBottom_toTopOf="@+id/dogBreed"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/color"
+        android:id="@+id/height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Color"
-        app:layout_constraintBottom_toTopOf="@+id/dogColor"
+        android:text="Height"
+        app:layout_constraintBottom_toTopOf="@+id/dogHeight"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/age"
+        android:id="@+id/weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Age"
-        app:layout_constraintBottom_toTopOf="@+id/dogAge"
+        android:text="Weight"
+        app:layout_constraintBottom_toTopOf="@+id/dogWeight"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/gender"
+        android:id="@+id/termperment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Gender"
-        app:layout_constraintBottom_toTopOf="@+id/dogGender"
+        android:text="Temperment"
+        app:layout_constraintBottom_toTopOf="@+id/dogTemperment"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -89,52 +89,72 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/dogName"
+        android:id="@+id/dogId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Dog Name here"
-        app:layout_constraintBottom_toTopOf="@+id/description"
+        android:text="Dog ID here"
+        app:layout_constraintBottom_toTopOf="@+id/breed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/dogColor"
+        android:id="@+id/dogHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Dog color here"
-        app:layout_constraintBottom_toTopOf="@+id/age"
+        android:text="Dog height here"
+        app:layout_constraintBottom_toTopOf="@+id/weight"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/dogDescription"
+        android:id="@+id/dogBreed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Dog description here"
-        app:layout_constraintBottom_toTopOf="@+id/color"
+        android:text="Dog breed here"
+        app:layout_constraintBottom_toTopOf="@+id/height"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/dogAge"
+        android:id="@+id/dogWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Dog age here"
-        app:layout_constraintBottom_toTopOf="@+id/gender"
+        android:text="Dog weight here"
+        app:layout_constraintBottom_toTopOf="@+id/termperment"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/dogGender"
+        android:id="@+id/dogTemperment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="252dp"
-        android:text="Dog Gender here"
+        android:layout_marginBottom="32dp"
+        android:text="Dog temper here"
+        app:layout_constraintBottom_toTopOf="@+id/bredfor"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bredfor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="12dp"
+        android:text="Bred For"
+        app:layout_constraintBottom_toTopOf="@+id/dogBredfor"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dogBredfor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="184dp"
+        android:text="Dog was bred for"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
