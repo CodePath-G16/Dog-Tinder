@@ -34,8 +34,8 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val breedNameTextView: TextView = itemView.findViewById(R.id.breedNameTextView)
-        private val bredForTextView: TextView = itemView.findViewById(R.id.bredForTextView)
-        private val breedGroupTextView: TextView = itemView.findViewById(R.id.breedGroupTextView)
+        private val dogWeight: TextView = itemView.findViewById(R.id.weight)
+        private val dogHeight: TextView = itemView.findViewById(R.id.height)
         private val dogImageView: ImageView = itemView.findViewById(R.id.dogImg)
 
         fun bind(currentDogInfo: HomeFragment.DogInfo) {
@@ -45,8 +45,8 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
                 .into(dogImageView)
 
             breedNameTextView.text = currentDogInfo.breedName
-            bredForTextView.text = currentDogInfo.bredFor
-            breedGroupTextView.text = currentDogInfo.breedGroup
+            dogWeight.text = currentDogInfo.weight
+           dogHeight.text = currentDogInfo.height
         }
 
     }

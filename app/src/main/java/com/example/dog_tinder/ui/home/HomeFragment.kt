@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dog_tinder.databinding.FragmentHomeBinding
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
@@ -41,9 +42,20 @@ class HomeFragment : Fragment() {
 
         // Initialize RecyclerView
         val recyclerView: RecyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
         dogInfoAdapter = DogInfoAdapter(dogInfoList)
         recyclerView.adapter = dogInfoAdapter
+
+
+        //VerticalView
+        /* val recyclerView: RecyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+         */
+
+        // Use PagerSnapHelper so that it automatically fixes into place
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
 
 
 
@@ -64,8 +76,8 @@ class HomeFragment : Fragment() {
         val breeds: List<Breed>,
         val id: String,
         val url: String,
-        val width: Int,
-        val height: Int,
+        val weight: String,
+        val height: String,
         val breedName: String,
         val bredFor: String,
         val breedGroup: String
@@ -102,7 +114,7 @@ class HomeFragment : Fragment() {
     private fun getDogInfo() {
         val client = AsyncHttpClient()
         val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=50"
 
         client.get(url, object : JsonHttpResponseHandler() {
             override fun onFailure(
@@ -172,7 +184,7 @@ class HomeFragment : Fragment() {
                                 val bredFor = breedObject.optString("bred_for", "Unknown")
                                 val breedGroup = breedObject.optString("breed_group", "Unknown")
                                 val height = breedObject.getJSONObject("height").getString("metric")
-                                val width = breedObject.getJSONObject("weight").getString("metric")
+                                val weight = breedObject.getJSONObject("weight").getString("metric")
                                 val url = dog.getString("url")
 
                                 // Create a DogInfo object and add it to the list
@@ -180,8 +192,8 @@ class HomeFragment : Fragment() {
                                     breeds = emptyList(),
                                     id = dog.getString("id"),
                                     url = url,
-                                    width = width.toIntOrNull() ?: 0,
-                                    height = height.toIntOrNull() ?: 0,
+                                    weight = weight,
+                                    height = height,
                                     breedName = breedName,
                                     bredFor = bredFor,
                                     breedGroup = breedGroup
