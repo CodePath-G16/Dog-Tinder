@@ -40,14 +40,14 @@
 
 Required Features:
 
-- **Like/Dislike Dogs - Implement a buton mechanism for users to like or dislike dogs**
+- **Like Dogs - Implement a buton mechanism for users to like dogs**
 - **Favorites List - Allow users to view a list of dogs that they have liked**
-- **Detailed Dog View - Enable users to view more details about the dog by long clicking or long pressing the dog's photo**
-- **Dog Profile - display photo and their detailed information - name, breed, age, gender, location**
-- **Search/Filter - a search/filter feature to allow users to find dogs based on specific criteria such as breed and age**
+- **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
+- **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
+
 
 Stretch Features:
-
+- **Search/Filter - a search/filter feature to allow users to find dogs based on specific criteria such as breed and age**
 - **Chat - implement a chat feature that allows users to communicate with the shelter or dog foster family to ask questions or arrange a meeting**
 - **Map integration - show the location off each dog on a map to help users find dogs that are geographically close to them**
 - **Compatibility test - a fun quiz or test that helps users determine their compatibity with a specific dog based on their lifestyle.**
@@ -73,16 +73,16 @@ Required Feature
 
 - **Like**
   - => **Action: When the user likes a dog, the dog's profile will be added to the only liked dog list**
-  - => **Outcome: User cna easily access and review the profiles of dogs they have liked**
+  - => **Outcome: User can easily access and review the profiles of dogs they have liked**
   - => **Aditional Action: Option to connect with the shelter to move forward with adoption process or get more information such as it's location and shelter contact information**
-    
-- **Dislike**
-  - => **Action: When a user dislikes a dog, the dog's profile will be added to disliked list**
-  - => **Outcome: Users can keep track of disliked dogs and avoid seeing them in future recommendations**
     
 - **Long click on the dog photo**
     - => **Action: When a user long clicks a dog's photo, it will display more information about the dog**
-    - => **Outcome: Displays more information such as age, gender, and location**
+    - => **Outcome: Displays more information such as weight, height, and breed name**
+
+- **Scroll**
+	- => **Action:: Scroll through recycle view of available dogs**
+	- => **Outcome: Displays more available dogs**
  
 Stretch Feature
 
@@ -95,7 +95,7 @@ Stretch Feature
     - => **Outcome: User can easily locate local dogs that are available for adoption**
 
 - **Compatibility Test**
-    - => **Action: Take a quick quick test to test the compatibility with a specific dog**
+    - => **Action: Take a quick quick test to test the comp		atibility with a specific dog**
     - => **Outcome: Able to determine is the dog is a good fit for the user's lifestyle such as if the dog is good with kids or other pets**
 
 ## Wireframes

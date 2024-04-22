@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="tinder_primary">#FE3C72</color>
+    <color name="tinder_secondary">#FFFFFF</color>
+    <color name="tinder_red">#E50914</color>
+    <color name="tinder_green">#30B700</color>
+    <color name="tinder_blue">#0084FF</color>
+    <color name="tinder_yellow">#FFD700</color>
 </resources>
