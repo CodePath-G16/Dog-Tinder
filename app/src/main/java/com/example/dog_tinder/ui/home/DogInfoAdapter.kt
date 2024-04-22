@@ -1,5 +1,3 @@
-package com.example.dog_tinder.ui.home
-
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +5,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dog_tinder.R
 import com.bumptech.glide.Glide
+import com.example.dog_tinder.R
+import com.example.dog_tinder.ui.home.HomeFragment
 
 class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : RecyclerView.Adapter<DogInfoAdapter.ViewHolder>() {
 
+    // Define a callback interface for long-click events
+    interface OnDogImageLongClickListener {
+        fun onLongClick(breedId: String)
+    }
+
+    private var longClickListener: OnDogImageLongClickListener? = null
+
+    fun setOnDogImageLongClickListener(listener: OnDogImageLongClickListener) {
+        longClickListener = listener
+
+        Log.d("GOING TO PROFILE PAGE", "navigate")
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
@@ -19,14 +30,18 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
         return ViewHolder(itemView)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentDogInfo = dogInfoList[position]
-        //trying to debug why it is not showing the image
-        Log.d("DogTinder", "Binding item at position $position, Dog Info: $currentDogInfo")
         holder.bind(currentDogInfo)
-    }
 
+        // Set a long click listener on the dog image view
+        holder.dogImageView.setOnLongClickListener {
+            longClickListener?.onLongClick(currentDogInfo.id)
+            true // Consume the long click event
+
+        }
+
+    }
 
     override fun getItemCount(): Int {
         return dogInfoList.size
@@ -36,7 +51,7 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
         private val breedNameTextView: TextView = itemView.findViewById(R.id.breedNameTextView)
         private val dogWeight: TextView = itemView.findViewById(R.id.weight)
         private val dogHeight: TextView = itemView.findViewById(R.id.height)
-        private val dogImageView: ImageView = itemView.findViewById(R.id.dogImg)
+        val dogImageView: ImageView = itemView.findViewById(R.id.dogImg)
 
         fun bind(currentDogInfo: HomeFragment.DogInfo) {
             Glide.with(itemView)
@@ -46,12 +61,7 @@ class DogInfoAdapter(private val dogInfoList: List<HomeFragment.DogInfo>) : Recy
 
             breedNameTextView.text = currentDogInfo.breedName
             dogWeight.text = currentDogInfo.weight
-           dogHeight.text = currentDogInfo.height
+            dogHeight.text = currentDogInfo.height
         }
-
     }
-
 }
-
-
-

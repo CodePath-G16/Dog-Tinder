@@ -11,42 +11,14 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.dog_tinder.databinding.ActivityMainBinding
 import com.example.dog_tinder.ui.notifications.DogProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    //  private lateinit var dogInfoAdapter: DogInfoAdapter
-    //  private val dogInfoList = mutableListOf<DogInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navigateToWelcomeScreen()
     }
-
-/*
-    private fun navigateToWelcomeScreen() {
-
-        startActivity(Intent(this, DogProfile::class.java))
-        finish()
-        /*
-        setContentView(R.layout.dog_profile)
-
-        val logInButton: Button = findViewById(R.id.loginButton)
-
-        logInButton.setOnClickListener {
-            navigateToHomeScreen()
-        }
-
-
-        /*
-       // Call DogProfile activity ONLY FOR TESTING
-        val intent = Intent(this, DogProfile::class.java)
-        startActivity(intent)
-        */
-    }
-*/
-    }
-*/
 
     private fun navigateToHomeScreen() {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -63,16 +35,17 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-
     private fun navigateToWelcomeScreen() {
         setContentView(R.layout.welcome_screen)
         val logInButton: Button = findViewById(R.id.loginButton)
-
 
         logInButton.setOnClickListener {
             navigateToHomeScreen()
         }
     }
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }

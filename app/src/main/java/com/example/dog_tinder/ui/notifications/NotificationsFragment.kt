@@ -21,8 +21,22 @@ class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
 
-    private val id = "k0WvkHMmP" // change to accept current id
-    private val apiUrl = "https://api.thedogapi.com/v1/images/$id?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Retrieve breed ID from arguments
+        arguments?.let {
+            val breedId = it.getString("BREED_ID")
+            // Log the breed ID
+            Log.d("BreedID in PROFILE PAGE", "Breed ID: $breedId")
+
+            // Create apiUrl inside the let block
+            val apiUrl = "https://api.thedogapi.com/v1/images/$breedId?api_key=live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
+
+            // Call fetchData with the apiUrl
+            fetchData(apiUrl)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,13 +46,10 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Fetch dog profile data
-        fetchData()
-
         return root
     }
 
-    private fun fetchData() {
+    private fun fetchData(apiUrl: String) {
         val client = AsyncHttpClient()
         client.get(apiUrl, object : JsonHttpResponseHandler() {
 
@@ -48,7 +59,7 @@ class NotificationsFragment : Fragment() {
                 errorResponse: String,
                 throwable: Throwable?
             ) {
-                Log.d("Error", errorResponse)
+                Log.d("DOG PROFILE NO PULL", errorResponse)
             }
 
             override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
@@ -105,6 +116,7 @@ class NotificationsFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        Log.d("PROFILE DESTROYED", "calling_onDestroy")
         super.onDestroyView()
         _binding = null
     }

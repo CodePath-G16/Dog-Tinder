@@ -27,13 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.notifications.DogProfile" />
-        <!-- DogProfile Activity -->
-        <activity
-            android:name=".ui.notifications.DogProfile_reneca"
-            android:label="Dog Profile">
-        </activity>
-
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.dog_tinder.ui.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        Log.d("DASHBOARD DESTROYED", "calling_onDestroy")
         super.onDestroyView()
         _binding = null
     }

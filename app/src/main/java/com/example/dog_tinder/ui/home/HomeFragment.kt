@@ -1,5 +1,7 @@
 package com.example.dog_tinder.ui.home
 
+import DogInfoAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.dog_tinder.databinding.FragmentHomeBinding
 import android.util.Log
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.example.dog_tinder.R
+import com.example.dog_tinder.ui.notifications.NotificationsFragment
 import okhttp3.Headers
 import org.json.JSONException
 
@@ -67,9 +72,45 @@ class HomeFragment : Fragment() {
             dogInfoAdapter.notifyDataSetChanged()
         }
 
+        setupLongClickHandling()
+
         getDogInfo()
         return root
     }
+
+    private fun setupLongClickHandling() {
+        dogInfoAdapter.setOnDogImageLongClickListener(object : DogInfoAdapter.OnDogImageLongClickListener {
+            override fun onLongClick(breedId: String) {
+                navigateToNotificationsFragment(breedId)
+            }
+        })
+    }
+
+
+
+    // to pass the breed id to notifications fragment aka dog profile
+    // Inside HomeFragment class
+    private fun navigateToNotificationsFragment(breedId: String) {
+        // Create a bundle to pass the breedId to the NotificationsFragment
+        val bundle = Bundle()
+        bundle.putString("BREED_ID", breedId)
+
+        // Log the contents of the bundle
+        for (key in bundle.keySet()) {
+            val value = bundle.get(key)
+            Log.d("IN HOME Bundle Contents", "$key: $value")
+        }
+
+        // Get the NavController from the Fragment's view
+        val navController = view?.findNavController()
+
+        // Pop the back stack to remove any existing instances of NotificationsFragment
+        navController?.popBackStack()
+
+        // Navigate to the NotificationsFragment with the bundle
+        navController?.navigate(R.id.navigation_notifications, bundle)
+    }
+
 
     data class DogInfo(
         val breeds: List<Breed>,
@@ -110,7 +151,7 @@ class HomeFragment : Fragment() {
     private fun getDogInfo() {
         val client = AsyncHttpClient()
         val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25&has_breeds=1"
 
         client.get(url, object : JsonHttpResponseHandler() {
             override fun onFailure(
@@ -164,6 +205,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        Log.d("HOME FRAG DESTROYED", "calling_onDestroy")
         super.onDestroyView()
         _binding = null
     }
