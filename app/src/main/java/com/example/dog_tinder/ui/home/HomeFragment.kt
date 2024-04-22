@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.dog_tinder.databinding.FragmentHomeBinding
 import android.util.Log
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.example.dog_tinder.databinding.FavoritesListBinding
 import okhttp3.Headers
 import org.json.JSONException
 
@@ -23,6 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var dogInfoAdapter: DogInfoAdapter
     private val dogInfoList = mutableListOf<DogInfo>()
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -114,7 +117,7 @@ class HomeFragment : Fragment() {
     private fun getDogInfo() {
         val client = AsyncHttpClient()
         val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=50"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25"
 
         client.get(url, object : JsonHttpResponseHandler() {
             override fun onFailure(
