@@ -2,24 +2,15 @@ package com.example.dog_tinder
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.codepath.asynchttpclient.AsyncHttpClient
-import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.example.dog_tinder.databinding.ActivityMainBinding
-import com.example.dog_tinder.ui.home.DogInfoAdapter
 import com.example.dog_tinder.ui.notifications.DogProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okhttp3.Headers
-import org.json.JSONException
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         navigateToWelcomeScreen()
     }
 
+/*
     private fun navigateToWelcomeScreen() {
 
         startActivity(Intent(this, DogProfile::class.java))
@@ -44,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         logInButton.setOnClickListener {
             navigateToHomeScreen()
         }
-*/
+
 
         /*
        // Call DogProfile activity ONLY FOR TESTING
@@ -52,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         */
     }
+*/
+    }
+*/
 
     private fun navigateToHomeScreen() {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -68,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+
     private fun navigateToWelcomeScreen() {
         setContentView(R.layout.welcome_screen)
         val logInButton: Button = findViewById(R.id.loginButton)
@@ -77,5 +73,6 @@ class MainActivity : AppCompatActivity() {
             navigateToHomeScreen()
         }
     }
+
 
 }

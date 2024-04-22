@@ -110,7 +110,7 @@ class HomeFragment : Fragment() {
     private fun getDogInfo() {
         val client = AsyncHttpClient()
         val apiKey = "live_YfLcN5wasmrJjW4EFSjbhBFZvqUxTGRMYAYCDl68ZfmJs7Pk06jGE3T7hsmSUJh6"
-        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=50"
+        val url = "https://api.thedogapi.com/v1/images/search?api_key=$apiKey&limit=25"
 
         client.get(url, object : JsonHttpResponseHandler() {
             override fun onFailure(
@@ -121,51 +121,6 @@ class HomeFragment : Fragment() {
             ) {
                 Log.e("Dog Error", "Failed to fetch dog info: ${throwable?.message}")
             }
-            /* override fun onSuccess(statusCode: Int, header: Headers?, response: JSON?) {
-
-                 // Handle successful response
-
-                try {
-                    // Parse the response JSON
-                    val dogInfo = DogInfo(
-                        breeds = response.getJSONArray("breeds").let { breedsArray ->
-                            List(breedsArray.length()) { i ->
-                                val breedObject = breedsArray.getJSONObject(i)
-                                Breed(
-                                    weight = Weight(
-                                        imperial = breedObject.getJSONObject("weight").getString("imperial"),
-                                        metric = breedObject.getJSONObject("weight").getString("metric")
-                                    ),
-                                    height = Height(
-                                        imperial = breedObject.getJSONObject("height").getString("imperial"),
-                                        metric = breedObject.getJSONObject("height").getString("metric")
-                                    ),
-                                    id = breedObject.getInt("id"),
-                                    name = breedObject.getString("name"),
-                                    bred_for = breedObject.getString("bred_for"),
-                                    breed_group = breedObject.getString("breed_group"),
-                                    life_span = breedObject.getString("life_span"),
-                                    temperament = breedObject.getString("temperament"),
-                                    reference_image_id = breedObject.getString("reference_image_id")
-                                )
-                            }
-                        },
-                        id = response.getString("id"),
-                        url = response.getString("url"),
-                        width = response.getInt("width"),
-                        height = response.getInt("height")
-                    )
-                    dogInfoList.add(dogInfo)
-                    dogInfoAdapter.notifyDataSetChanged()
-                } catch (e: JSONException) {
-                    // Handle JSON parsing error
-                    Log.e("Dog", "Error parsing JSON", e)
-                }
-            }
-            */
-
-            //was not able to figure out how to make the current code work so I tried to follow the format from my previous project
-            //if able to make it work, then will take this out
 
             override fun onSuccess(statusCode: Int, headers: Headers?, response: JSON?) {
                 try {
