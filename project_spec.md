@@ -114,7 +114,7 @@ Video 1:
  
 
 Video 2: 
-![Example GIF](Dog-Tinder/buildprogress2- Imgur.gif)
+![Example GIF](buildprogress2.gif)
 
 
 ## License
