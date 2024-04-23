@@ -41,7 +41,7 @@ Required Features:
 
 - **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
 - **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
-- **Welcome/Login Screen** - input for username and password, leads to home page
+- **Welcome/Login Screen - input for username and password, leads to home page**
 - **Notify Like/Dislike Dogs - Implement a button mechanism to notify (display a Toast) users they liked/disliked the dog**
 
 
@@ -91,8 +91,8 @@ Stretch Feature
 ## Wireframes
 
 <!-- Add picture of your hand sketched wireframes in this section -->
-<img src="https://i.imgur.com/A3Y5AgE.png" width=600>
-<img src="https://i.imgur.com/qT9bv6Z.png" width=600>
+<img src="https://i.imgur.com/FyXcVcG.png" width=800>
+
 
 ### [BONUS] Digital Wireframes & Mockups
 
