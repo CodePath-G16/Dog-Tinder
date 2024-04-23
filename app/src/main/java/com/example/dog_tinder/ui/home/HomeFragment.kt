@@ -78,6 +78,10 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    fun onLikeButtonClick(dogId: String) {
+        dogInfoAdapter
+    }
+
     private fun setupLongClickHandling() {
         dogInfoAdapter.setOnDogImageLongClickListener(object : DogInfoAdapter.OnDogImageLongClickListener {
             override fun onLongClick(breedId: String) {
