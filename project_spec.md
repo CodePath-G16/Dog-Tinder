@@ -114,7 +114,7 @@ Video 1:
  
 
 Video 2: 
-<img src='https://imgur.com/QKYT1EJ.gif' title='Video Demo' width='' alt='Video Demo' />
+![Example GIF](buildprogress2- Imgur.gif)
 
 
 ## License
