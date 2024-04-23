@@ -32,7 +32,7 @@ The following REQUIRED files are included:
   - [x] 2+ Videos/GIFs of build progress
 
 - [x] Our 🎥 Demo Video
-  - [ ] We have also added the Demo Video Link to the Group Info Form on the course portal.
+  - [x] We have also added the Demo Video Link to the Group Info Form on the course portal.
 
 The following EXTRA features are implemented:
 
@@ -44,9 +44,13 @@ The following EXTRA features are implemented:
 
 Here's a video that demos all of the app's implemented features:
 
+
+https://github.com/CodePath-G16/Dog-Tinder/assets/100616335/1ef04670-1192-4071-85f0-da293f9e4e9d
+
+
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Demo' width='' alt='Video Demo' />
 
-VIDEO created with **your chosen video tool**
+VIDEO created with **Microsoft Clipchamp and Vimeo**
 
 ## Notes
 
