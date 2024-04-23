@@ -109,9 +109,12 @@ process, or what you learned this unit!
 
 For Milestone 2, include **2+ Videos/GIFs** of the build process here!
 
-Video 1: https://i.imgur.com/hoVi8yP.mp4
+Video 1:
+<img src='https://imgur.com/hoVi8yP.gif' title='Video Demo' width='' alt='Video Demo' />
+ 
 
-Video 2: https://i.imgur.com/QKYT1EJ.mp4
+Video 2: 
+<img src='https://imgur.com/QKYT1EJ.gif' title='Video Demo' width='' alt='Video Demo' />
 
 
 ## License
