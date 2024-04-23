@@ -11,7 +11,7 @@
 
 ### Description 
 
-**An application that matches dog to potential owners. Just like the tinder app, it will display photo and the user will have the option to like or dislike. Users can also view dog info by using long click and view only liked dogs by clicking a button.**
+**An application that matches dog to potential owners. Just like the tinder app, it will display photo and the user will have the option swipe to see more dogs. To view more specific dog information, the user can long click to a profile about the dog and return to viewing more dogs.**
 
 ### App Evaluation
 
@@ -22,17 +22,16 @@
 - **Mobile:**
     - An android application, allowing for a quick and convenient access to view available dogs.
 - **Story:**
-    - The app's goal is to connect dogs in needs of homes with loving owners and responsible owners. By providing a user-friendly platform with dog profiles, it simplifies the adoption process for both potential owners and shelters.
+    - The app's goal is to connect dogs in needs of homes with loving owners and responsible owners. By providing a user-friendly platform with dog profiles, it simplifies the search process for potential owners.
 - **Market:**
     - Any individual or family that are looking to adopt a dog. It could also extended to shelters that are looking to match dog with potential owners.
 - **Habit:**
     - Users (want-to-be pet owners) use the app as a reliable source to search for available dogs.
 - **Scope:**
     - It will display a list of available dogs photos for user to view
-    - Have the ability to view more information such as name, age, breed, location, and description
-    - It will include functionality to "like/favorite" that dog
-       - can display a list favorites
-       - include buttons to filter breeds
+    - Have the ability to view more information such as breed name, weight, height, description, etc.
+    - It will include functionality to notify the user "like/favorite" or "dislike" that dog
+      
 
 ## Product Spec
 
@@ -40,69 +39,60 @@
 
 Required Features:
 
-- **Like Dogs - Implement a buton mechanism for users to like dogs**
-- **Favorites List - Allow users to view a list of dogs that they have liked**
-- **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
-- **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
+- [x] **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
+- [x] **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
+- [x] **Welcome/Login Screen - input for username and password, leads to home page**
+- [x] **Notify Like/Dislike Dogs - Implement a button mechanism to notify (display a Toast) users they liked/disliked the dog**
 
 
 Stretch Features:
+- **Favorites List - Allow users to view a list of dogs that they have liked**
 - **Search/Filter - a search/filter feature to allow users to find dogs based on specific criteria such as breed and age**
 - **Chat - implement a chat feature that allows users to communicate with the shelter or dog foster family to ask questions or arrange a meeting**
-- **Map integration - show the location off each dog on a map to help users find dogs that are geographically close to them**
-- **Compatibility test - a fun quiz or test that helps users determine their compatibity with a specific dog based on their lifestyle.**
 
 
 ### 2. Chosen API(s)
 
-- **AdoptAPet API - https://documenter.getpostman.com/view/17710041/UUy38kte**
+- **The Dog API - https://documenter.getpostman.com/view/5578104/2s935hRnak#587d112a-cfbb-4817-9a84-98a606113973**
     - **Get Dog:** Retrieve random dog for user to view
        - => Display dog photo
-    - **Get Dog:** When user long clicks a photo
-       - => Display name, gender, location
+    - **Get Dog-Breed:** When user long clicks a photo, get that specific breed's info
+       - => Display breed name, weight, height, characteristic, etc.
     - **Get Dog:** User can view dog profile
-       - => Display name, age, gender, location, contact info if available
-    - **Get Dog-Breed:** User can search/filter for dogs from a spefic breed
-       - => Display dogs that are a specific breed that the user searches for
-    - **Get Dog-Age:** User can search/filter for dogs based on age
-       - => Display dogs that are a specific age
+       - => Display weight, height, breed name, temperment, bred for, life span
 
 ### 3. User Interaction
 
 Required Feature
 
-- **Like**
-  - => **Action: When the user likes a dog, the dog's profile will be added to the only liked dog list**
-  - => **Outcome: User can easily access and review the profiles of dogs they have liked**
-  - => **Aditional Action: Option to connect with the shelter to move forward with adoption process or get more information such as it's location and shelter contact information**
-    
 - **Long click on the dog photo**
-    - => **Action: When a user long clicks a dog's photo, it will display more information about the dog**
-    - => **Outcome: Displays more information such as weight, height, and breed name**
-
+	- => **Action: When a user long clicks a dog's photo, it will display more information about the dog**
+	- => **Outcome: User learns more information about the dog**
 - **Scroll**
 	- => **Action:: Scroll through recycle view of available dogs**
 	- => **Outcome: Displays more available dogs**
- 
+- **Click on Dislike/Like button will display Dislike/Like Toasts**
+	- => **Action: When the user likes/dislikes a dog, notify user**
+	- => **Outcome: User is notified if they will have that dog in their likes or dislikes (no longer displayed)**
+    
+
 Stretch Feature
 
-- **Chat**
-    - => **Action: chat feature that will allow users to communicate with shelter staff or foster dog family**
-    - => **Outcome: User can ask questions, get more information, or arrange a meeting**
- 
-- **Map Integration**
-    - => **Action: Show the location of each dog on map to help users find dogs that are close to them**
-    - => **Outcome: User can easily locate local dogs that are available for adoption**
-
-- **Compatibility Test**
-    - => **Action: Take a quick quick test to test the comp		atibility with a specific dog**
-    - => **Outcome: Able to determine is the dog is a good fit for the user's lifestyle such as if the dog is good with kids or other pets**
+- **Favorites List - Allow users to view a list of dogs that they have liked**
+	- => **Action: When user clicks the like button, that dog is added to favorites list**
+	- => **Outcome: User can more easily refer to dogs they are interested in**
+- **Search/Filter - A search/filter feature to allow users to find dogs based on specific criteria such as breed and age**
+	- => **Action: Provide text bar for user to type in the criteria**
+	- => **Outcome: User can view more specific dogs that fit their interests**
+- **Chat - implement a chat feature that allows users to communicate with the shelter or dog foster family to ask questions or arrange a meeting**
+	- => **Action: Provide a page the connects the user to the approriate shelter for further information about the dog**
+	- => **Outcome: User has easier access to learning more about the dog**
 
 ## Wireframes
 
 <!-- Add picture of your hand sketched wireframes in this section -->
-<img src="https://i.imgur.com/A3Y5AgE.png" width=600>
-<img src="https://i.imgur.com/qT9bv6Z.png" width=600>
+<img src="https://i.imgur.com/FyXcVcG.png" width=800>
+
 
 ### [BONUS] Digital Wireframes & Mockups
 
@@ -112,8 +102,20 @@ Stretch Feature
 
 Here's a place for any other notes on the app, it's creation 
 process, or what you learned this unit!  
+ - Understand navigation best practices
+ - Underestand how to pass information to another page
+ - Understand endpoints and which parameters to pass into the query string
+ - How to debug and test functionality utilizing log cat, toasts, etc.
 
 For Milestone 2, include **2+ Videos/GIFs** of the build process here!
+
+Video 1:
+<img src='https://imgur.com/hoVi8yP.gif' title='Video Demo' width='' alt='Video Demo' />
+ 
+
+Video 2: 
+![Example GIF](buildprogress2.gif)
+
 
 ## License
 
