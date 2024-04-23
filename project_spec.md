@@ -39,10 +39,10 @@
 
 Required Features:
 
-- **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
-- **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
-- **Welcome/Login Screen - input for username and password, leads to home page**
-- **Notify Like/Dislike Dogs - Implement a button mechanism to notify (display a Toast) users they liked/disliked the dog**
+- [x] **Detailed Dog View / Dog Profile SPECIFIC INFO - Enable users to view more details (breed name, weight, height, bred for, life-span, etc.) about the dog by long clicking or long pressing the dog's photo**
+- [x] **Dog Recycler Home View - display photo and their general information - breed name, weight, height**
+- [x] **Welcome/Login Screen - input for username and password, leads to home page**
+- [x] **Notify Like/Dislike Dogs - Implement a button mechanism to notify (display a Toast) users they liked/disliked the dog**
 
 
 Stretch Features:
@@ -108,9 +108,10 @@ process, or what you learned this unit!
  - How to debug and test functionality utilizing log cat, toasts, etc.
 
 For Milestone 2, include **2+ Videos/GIFs** of the build process here!
-Video 1: https://i.imgur.com/hoVi8yP.mp4
-VIdeo 2: https://i.imgur.com/QKYT1EJ.mp4
 
+Video 1: https://i.imgur.com/hoVi8yP.mp4
+
+Video 2: https://i.imgur.com/QKYT1EJ.mp4
 
 
 ## License
