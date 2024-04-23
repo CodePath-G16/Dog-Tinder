@@ -31,7 +31,7 @@ The following REQUIRED files are included:
   - [x] Checked off 2+ completed features
   - [x] 2+ Videos/GIFs of build progress
 
-- [ ] Our 🎥 Demo Video
+- [x] Our 🎥 Demo Video
   - [ ] We have also added the Demo Video Link to the Group Info Form on the course portal.
 
 The following EXTRA features are implemented:
